@@ -52,19 +52,31 @@ def blur_image(image_array:np.ndarray, *,kernel_size: int = 3,kernel_type: str =
         raise ValueError("Kernel_size must be an odd integer")
     
     pad = kernel_size // 2
-    blurred_array = np.zeros_like(image_array, dtype=np.float32)
+    blurred_array = np.zeros_like(image_array, dtype=np.float32) # initialize empty array
 
     if padding.lower() == "constant":
-        box_kernel = np.ones((kernel_size, kernel_size)) / (kernel_size * kernel_size)
         padded_array = np.pad(image_array, ((pad, pad), (pad, pad), (0,0)), mode="constant", constant_values=0)
-    elif padding.lower() == "gaussian":
-        ...
     
+    if kernel_type.lower() == "box":
+        kernel = np.ones((kernel_size, kernel_size)) / (kernel_size * kernel_size)
+    elif kernel_type.lower() == "gaussian":
+        sigma = kernel_size / 6
+        kernel_center = pad
+        kernel = np.zeros((kernel_size, kernel_size), dtype=np.float32)
+
+        for horizantal in range(kernel_size):
+            for vertical in range(kernel_size):
+                x = horizantal - kernel_center
+                y = vertical - kernel_center
+                kernel[horizantal, vertical] = np.exp(-(x**2 + y**2) / (2 * sigma**2))
+        kernel /= np.sum(kernel)
+                
+
     for channel in range(3):
         for height in range(image_array.shape[0]):
             for width in range(image_array.shape[1]):
                 region = padded_array[height:height+kernel_size, width:width+kernel_size, channel]
-                blurred_pixel = np.sum(region * box_kernel)
+                blurred_pixel = np.sum(region * kernel)
                 blurred_array[height, width, channel] = blurred_pixel
 
     blurred_array = np.clip(blurred_array, 0, 255).astype(np.uint8)
