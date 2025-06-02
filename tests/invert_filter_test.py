@@ -1,5 +1,5 @@
 import numpy as np
-from filters import invert_colors
+from pixel_core.filters import invert_colors
 
 
 def test_invert_color():

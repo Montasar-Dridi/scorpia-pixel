@@ -14,7 +14,7 @@ def load_image(path: str) -> np.ndarray:
         raise ValueError(f"The file at {path} is not a valid image") from UnidentifiedImageError
 
 
-def save_image(image_array: np.ndarray, output_path: str) -> None:
+def save_image(image_array: np.ndarray, output_path: str = "output_images") -> None:
     """save a numpy array as an image file"""
     os.makedirs(output_path,exist_ok=True)
     full_path = os.path.join(output_path, "New_image.png")

@@ -1,6 +1,6 @@
 import numpy as np
 from scipy.ndimage import convolve
-from filters import blur_image
+from pixel_core.filters import blur_image
 
 def test_blur_image_box_and_gaussian():
     original_array = np.array([
