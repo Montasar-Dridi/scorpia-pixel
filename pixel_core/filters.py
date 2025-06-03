@@ -1,5 +1,5 @@
 import numpy as np
-from image_utils import load_image, save_image, check_rgb_uint8
+from pixel_core.image_utils import load_image, save_image, check_rgb_uint8
 
 
 def invert_colors(image_array: np.ndarray, *, in_place: bool = False) -> np.ndarray:

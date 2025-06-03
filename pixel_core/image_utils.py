@@ -14,12 +14,27 @@ def load_image(path: str) -> np.ndarray:
         raise ValueError(f"The file at {path} is not a valid image") from UnidentifiedImageError
 
 
-def save_image(image_array: np.ndarray, output_path: str = "output_images") -> None:
-    """save a numpy array as an image file"""
-    os.makedirs(output_path,exist_ok=True)
-    full_path = os.path.join(output_path, "New_image.png")
+import os
+
+def save_image(image_array: np.ndarray, output_path: str = "output_images", filter_name: str = "output") -> None:
+    """
+    Save an image with an auto-incremented, clean, and descriptive filename.
+
+    Example filename: scorpia_invert_0.png
+    """
+    os.makedirs(output_path, exist_ok=True)
+
+    index = 0
+    while True:
+        filename = f"scorpia_{filter_name}_{index}.png"
+        full_path = os.path.join(output_path, filename)
+        if not os.path.exists(full_path):
+            break
+        index += 1
+
     to_image = Image.fromarray(image_array)
     to_image.save(full_path)
+
 
 
 def check_rgb_uint8(image_array: np.ndarray) -> None:
