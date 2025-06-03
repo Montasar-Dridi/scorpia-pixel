@@ -7,8 +7,7 @@ Scorpia-Pixel is a lightweight Python package for image manipulation and process
 
 ## Project Purpose
 
-This project serves as my personal sandbox for learning image processing in Python. By implementing various filters and transformations from scratch, I aim to gain a deeper understanding of computer vision fundamentals. While the package is available for others to use, its primary purpose is educational for me as the developer.
-
+This project is my personal playground for learning image processing with Python. I'm building filters and transformations from scratch to really understand how computer vision works. You're welcome to use it, but just know—I'm mainly doing this to teach myself
 ## Features
 
 Scorpia-Pixel v0.1.0 includes the following core features:
@@ -183,18 +182,6 @@ Scorpia-Pixel follows a structured release strategy as I continue to learn and i
 - Comprehensive usage examples
 - Performance benchmarking
 - Code cleanup and packaging polish
-
-## Contributing
-
-While this is primarily a personal learning project, feedback and suggestions are welcome! If you'd like to contribute, please:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
 
